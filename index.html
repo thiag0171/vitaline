@@ -227,7 +227,6 @@ ul{list-style:none}
         </div>
       </div>
       <div class="hero-img-container">
-        <!-- CORRIGIDO AQUI: O NOME DO ARQUIVO AGORA É doutor.png.png -->
         <img src="doutor.png.png" alt="Dr. Bruno Nogueira" onerror="this.src='https://via.placeholder.com/450x600/111/333?text=Foto+do+Doutor'">
       </div>
     </div>
@@ -425,8 +424,8 @@ ul{list-style:none}
     <div id="passo3" class="pix-box">
       <!-- Mensagem de sucesso automática -->
       <div class="msg-sucesso" id="msgSucesso">
-        ✅ Formulário salvo e enviado para o WhatsApp!<br>
-        Realize o pagamento do PIX abaixo.
+        ✅ Formulário salvo com sucesso!<br>
+        Realize o pagamento do PIX e depois envie o comprovante.
       </div>
 
       <h3 style="text-align:center;margin-bottom:10px;">Pagamento via PIX</h3>
@@ -576,7 +575,7 @@ function buscarCEP(cep) {
 }
 
 // ==========================================
-// GERAR PIX E ENVIO AUTOMÁTICO WHATSAPP
+// GERAR PIX (SEM ABRIR O WHATSAPP AUTOMATICAMENTE)
 // ==========================================
 function gerarPix() {
   // Validação dos campos
@@ -629,13 +628,10 @@ function gerarPix() {
   
   const urlWpp = `https://wa.me/5514910131320?text=${msgWpp}`;
   
-  // Atualiza o botão caso ele queira clicar novamente
+  // Atualiza o botão para quando o cliente quiser enviar o comprovante
   document.getElementById('btnEnviarComprovante').href = urlWpp;
   
-  // ABRE O WHATSAPP AUTOMATICAMENTE EM UMA NOVA ABA
-  window.open(urlWpp, '_blank');
-  
-  // MOSTRA A MENSAGEM DE SUCESSO
+  // MOSTRA A MENSAGEM DE SUCESSO (sem abrir o WhatsApp)
   document.getElementById('msgSucesso').style.display = 'block';
   
   // AVANÇA PARA A TELA DO PIX

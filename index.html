@@ -81,12 +81,16 @@ ul{list-style:none}
 .stat b{display:block;font-size:1.8rem;font-family:Georgia, serif;color:var(--dourado);}
 .stat span{font-size:.85rem;color:#aaa;font-weight:500;text-transform:uppercase;letter-spacing:1px;}
 
-/* FOTO DO DOUTOR */
-.hero-img-container {position: relative; display: flex; justify-content: center;}
+/* FOTO DO DOUTOR (COM EFEITO PREMIUM) */
+.hero-img-container {position: relative; display: flex; justify-content: center; align-items: flex-end;}
 .hero-img-container img {
-  width: 100%; max-width: 450px; object-fit: cover; border-radius: 20px;
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  width: 100%; 
+  max-width: 420px; 
+  object-fit: cover; 
+  border-radius: 20px;
+  filter: drop-shadow(0px 10px 30px rgba(212, 175, 55, 0.3)); /* Brilho dourado */
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
 }
 
 /* ============ PRODUTOS ============ */
@@ -322,7 +326,13 @@ ul{list-style:none}
             </ul>
           </div>
 
-          <form class="form" action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
+          <!-- FORMULÁRIO FUNCIONAL (FORMSUBMIT ENVIA DIRETO PARA O EMAIL) -->
+          <form class="form" action="https://formsubmit.co/thiagopalmeira200@gmail.com" method="POST">
+            <!-- Desativa o Captcha chato -->
+            <input type="hidden" name="_captcha" value="false">
+            <!-- Assunto do e-mail -->
+            <input type="hidden" name="_subject" value="Novo contato do site - Agendamento">
+            
             <label for="nome">Nome Completo</label>
             <input type="text" name="nome" id="nome" placeholder="Seu nome" required>
 

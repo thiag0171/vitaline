@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Thiago Palmeira — Tratamentos Injetáveis</title>
+<title>Dr. Bruno Nogueira — Tratamentos Injetáveis</title>
 <meta name="description" content="Tratamentos de alta performance com Monjaro, Tirzec e Wegovy. Acompanhamento médico especializado.">
 <style>
 /* ============ RESET & VARIÁVEIS (TEMA DOURADO) ============ */
@@ -81,14 +81,11 @@ ul{list-style:none}
 .stat b{display:block;font-size:1.8rem;font-family:Georgia, serif;color:var(--dourado);}
 .stat span{font-size:.85rem;color:#aaa;font-weight:500;text-transform:uppercase;letter-spacing:1px;}
 
-/* FOTO DO DOUTOR (COM EFEITO PREMIUM) */
+/* FOTO DO DOUTOR */
 .hero-img-container {position: relative; display: flex; justify-content: center; align-items: flex-end;}
 .hero-img-container img {
-  width: 100%; 
-  max-width: 420px; 
-  object-fit: cover; 
-  border-radius: 20px;
-  filter: drop-shadow(0px 10px 30px rgba(212, 175, 55, 0.3)); /* Brilho dourado */
+  width: 100%; max-width: 420px; object-fit: cover; border-radius: 20px;
+  filter: drop-shadow(0px 10px 30px rgba(212, 175, 55, 0.3));
   -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
 }
@@ -158,7 +155,7 @@ ul{list-style:none}
 .etapa-titulo{font-size:1.1rem;color:var(--tinta);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .etapa-titulo svg{width:18px;height:18px;stroke:var(--dourado);fill:none;stroke-width:2.5;}
 
-.select-doses, .form-checkout input{width:100%;padding:14px;border-radius:8px;border:1px solid var(--borda);font-size:.95rem;margin-bottom:16px;outline:none;background:#f9f9f9;font-family:inherit;}
+.select-doses, .form-checkout input{width:100%;padding:14px;border-radius:8px;border:1px solid var(--borda);font-size:.95rem;margin-bottom:16px;outline:none;background:#f9f9f9;font-family:inherit; transition: 0.3s;}
 .form-checkout input:focus { border-color: var(--dourado); background: #fff; }
 .preco-final{font-size:1.5rem;font-weight:800;color:var(--tinta);margin-bottom:24px;text-align:center;}
 .preco-final span{font-size:.9rem;color:var(--cinza);font-weight:400;display:block;}
@@ -197,7 +194,7 @@ ul{list-style:none}
       <span class="logo-marca">
         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       </span>
-      Dr. <span>Thiago</span>
+      Dr. <span>Bruno</span>
     </a>
     <nav class="nav-links">
       <a href="#produtos">Tratamentos</a>
@@ -227,7 +224,7 @@ ul{list-style:none}
         </div>
       </div>
       <div class="hero-img-container">
-        <img src="doutor.png.jpg" alt="Dr. Thiago Palmeira" onerror="this.src='https://via.placeholder.com/450x600/111/333?text=Foto+do+Doutor'">
+        <img src="doutor.png.jpg" alt="Dr. Bruno Nogueira" onerror="this.src='https://via.placeholder.com/450x600/111/333?text=Foto+do+Doutor'">
       </div>
     </div>
   </section>
@@ -326,11 +323,9 @@ ul{list-style:none}
             </ul>
           </div>
 
-          <!-- FORMULÁRIO FUNCIONAL (FORMSUBMIT ENVIA DIRETO PARA O EMAIL) -->
+          <!-- FORMULÁRIO DE CONTATO -->
           <form class="form" action="https://formsubmit.co/thiagopalmeira200@gmail.com" method="POST">
-            <!-- Desativa o Captcha chato -->
             <input type="hidden" name="_captcha" value="false">
-            <!-- Assunto do e-mail -->
             <input type="hidden" name="_subject" value="Novo contato do site - Agendamento">
             
             <label for="nome">Nome Completo</label>
@@ -358,12 +353,12 @@ ul{list-style:none}
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-logo">Dr. <span>Thiago Palmeira</span></div>
+    <div class="footer-logo">Dr. <span>Bruno Nogueira</span></div>
     <p>Clínica de Emagrecimento e Saúde Metabólica</p>
     
     <div class="aviso-legal">
       <strong>Aviso Legal:</strong> Este site tem caráter meramente informativo. As informações aqui contidas não substituem a consulta médica. Todos os medicamentos citados são sujeitos a prescrição médica e exigem acompanhamento profissional.<br>
-      Responsável Técnico: Dr. Thiago Palmeira - CRM/SP 707268<br>
+      Responsável Técnico: Dr. Bruno Nogueira - CRM/SP 707268<br>
       © 2024 Todos os direitos reservados.
     </div>
   </div>
@@ -408,10 +403,12 @@ ul{list-style:none}
         <input type="tel" id="checkTelefone" placeholder="Telefone / WhatsApp" required oninput="mascaraTelefone(this)">
         
         <div style="display:flex; gap:10px;">
-          <input type="text" id="checkCep" placeholder="CEP" required oninput="mascaraCEP(this)" style="width:40%;">
-          <input type="text" id="checkEndereco" placeholder="Rua, Número, Bairro" required style="width:60%;">
+          <input type="text" id="checkCep" placeholder="CEP" required oninput="mascaraCEP(this)" onblur="buscarCEP(this.value)" style="width:40%;">
+          <input type="text" id="checkNumero" placeholder="Número" required style="width:60%;">
         </div>
-        <input type="text" id="checkCidade" placeholder="Cidade / Estado" required>
+        <input type="text" id="checkEndereco" placeholder="Rua / Logradouro (Preenchido auto)" required>
+        <input type="text" id="checkBairro" placeholder="Bairro (Preenchido auto)" required>
+        <input type="text" id="checkCidade" placeholder="Cidade / UF (Preenchido auto)" required>
       </div>
       
       <div style="display:flex; gap:10px; margin-top:20px;">
@@ -447,7 +444,7 @@ ul{list-style:none}
 // ==========================================
 const CONFIG_PIX = {
   chave: "0981f793-e0cd-4b57-ac9f-5d7145704188", 
-  nome: "THIAGO PALMEIRA",              
+  nome: "BRUNO NOGUEIRA",              
   cidade: "SAO PAULO"                   
 };
 
@@ -529,18 +526,63 @@ function voltarPasso1() {
   passo1.style.display = 'block';
 }
 
+// ==========================================
+// BUSCA AUTOMÁTICA DE CEP (API VIACEP)
+// ==========================================
+function buscarCEP(cep) {
+  cep = cep.replace(/\D/g, '');
+  if (cep.length !== 8) return; // Só busca se tiver 8 dígitos
+
+  const ruaInput = document.getElementById('checkEndereco');
+  const bairroInput = document.getElementById('checkBairro');
+  const cidadeInput = document.getElementById('checkCidade');
+  const numeroInput = document.getElementById('checkNumero');
+
+  // Feedback visual de carregamento
+  ruaInput.value = "...";
+  bairroInput.value = "...";
+  cidadeInput.value = "...";
+
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(response => response.json())
+    .then(data => {
+      if (!data.erro) {
+        ruaInput.value = data.logradouro;
+        bairroInput.value = data.bairro;
+        cidadeInput.value = `${data.localidade} / ${data.uf}`;
+        numeroInput.focus(); // Joga o cursor direto para o número
+      } else {
+        alert("CEP não encontrado. Por favor, preencha o endereço manualmente.");
+        ruaInput.value = "";
+        bairroInput.value = "";
+        cidadeInput.value = "";
+      }
+    })
+    .catch(error => {
+      console.error("Erro ao buscar o CEP:", error);
+      ruaInput.value = "";
+      bairroInput.value = "";
+      cidadeInput.value = "";
+    });
+}
+
+// ==========================================
+// GERAR PIX E MENSAGEM DO WHATSAPP
+// ==========================================
 function gerarPix() {
-  // Validação básica dos campos
+  // Validação dos campos
   const nome = document.getElementById('checkNome').value;
   const cpf = document.getElementById('checkCpf').value;
   const email = document.getElementById('checkEmail').value;
   const tel = document.getElementById('checkTelefone').value;
   const cep = document.getElementById('checkCep').value;
-  const end = document.getElementById('checkEndereco').value;
+  const rua = document.getElementById('checkEndereco').value;
+  const num = document.getElementById('checkNumero').value;
+  const bairro = document.getElementById('checkBairro').value;
   const cid = document.getElementById('checkCidade').value;
 
-  if(!nome || !cpf || !email || !tel || !cep || !end || !cid) {
-    alert("Por favor, preencha todos os dados para continuar.");
+  if(!nome || !cpf || !email || !tel || !cep || !rua || !num || !bairro || !cid) {
+    alert("Por favor, preencha todos os dados corretamente para continuar.");
     return;
   }
 
@@ -559,7 +601,7 @@ function gerarPix() {
   // Exibe o Copia e Cola
   document.getElementById('pixCopiaCola').innerText = pixPayload;
   
-  // Configura o botão de WhatsApp (ENVIA TODOS OS DADOS PARA O DOUTOR)
+  // Configura o botão de WhatsApp
   const msgWpp = encodeURIComponent(
     `*NOVO PEDIDO - PAGAMENTO PIX*\n\n` +
     `*Produto:* ${produtoAtual.titulo} (${opcao.dose})\n` +
@@ -571,7 +613,7 @@ function gerarPix() {
     `*Telefone:* ${tel}\n\n` +
     `*--- ENDEREÇO DE ENTREGA ---*\n` +
     `*CEP:* ${cep}\n` +
-    `*Endereço:* ${end}\n` +
+    `*Endereço:* ${rua}, Nº ${num} - ${bairro}\n` +
     `*Cidade/UF:* ${cid}\n\n` +
     `Estou enviando o comprovante do PIX em anexo.`
   );

@@ -227,7 +227,8 @@ ul{list-style:none}
         </div>
       </div>
       <div class="hero-img-container">
-        <img src="doutor.png.png" alt="Dr. Bruno Nogueira" onerror="this.src='https://via.placeholder.com/450x600/111/333?text=Foto+do+Doutor'">
+        <!-- IMAGEM ATUALIZADA AQUI -->
+        <img src="drbruno.png.jpg" alt="Dr. Bruno Nogueira" onerror="this.src='https://via.placeholder.com/450x600/111/333?text=Foto+do+Doutor'">
       </div>
     </div>
   </section>
@@ -326,7 +327,7 @@ ul{list-style:none}
             </ul>
           </div>
 
-          <!-- FORMULÁRIO DE CONTATO (ATUALIZADO COM FORMSPREE) -->
+          <!-- FORMULÁRIO DE CONTATO (FORMSPREE) -->
           <form class="form" id="formContatoMain" action="https://formspree.io/f/xyeeddgr" method="POST">
             <input type="hidden" name="_subject" value="Novo contato do site - Agendamento">
             
@@ -463,7 +464,7 @@ const CONFIG_PIX = {
 // FORMULÁRIO DE CONTATO AJAX (FORMSPREE)
 // ==========================================
 document.getElementById('formContatoMain').addEventListener('submit', function(e) {
-  e.preventDefault(); // Impede de abrir tela branca
+  e.preventDefault(); 
   
   const form = e.target;
   const btn = document.getElementById('btnEnviarContato');
@@ -480,13 +481,13 @@ document.getElementById('formContatoMain').addEventListener('submit', function(e
   }).then(response => {
     if (response.ok) {
       btn.innerText = 'Enviado!';
-      btn.style.background = '#2e7d32'; // Verde sucesso
+      btn.style.background = '#2e7d32'; 
       msgSucesso.style.display = 'block';
       form.reset();
       
       setTimeout(() => {
         btn.innerText = originalText;
-        btn.style.background = ''; // Volta a cor dourada original
+        btn.style.background = ''; 
         btn.disabled = false;
         msgSucesso.style.display = 'none';
       }, 5000);

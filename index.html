@@ -166,6 +166,9 @@ ul{list-style:none}
 .pix-codigo{background:#f5f5f5;border:1px dashed #ccc;padding:12px;border-radius:8px;font-family:monospace;font-size:.75rem;word-break:break-all;margin-bottom:16px; color: #333;}
 .btn-whats-pix{background:#25D366;color:#fff;width:100%;padding:14px;border-radius:8px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;}
 
+/* Mensagem de Sucesso */
+.msg-sucesso { background-color: #e8f5e9; color: #2e7d32; padding: 15px; border-radius: 8px; border: 1px solid #a5d6a7; margin-bottom: 20px; font-weight: 600; font-size: 0.9rem; text-align: center; display: none; }
+
 @media(max-width:980px){
   .hero-grid{grid-template-columns:1fr;gap:40px;text-align:center;}
   .hero p.lead{margin:0 auto 30px;}
@@ -318,13 +321,13 @@ ul{list-style:none}
             <h2>Agende sua Avaliação</h2>
             <p>Preencha o formulário abaixo e nossa equipe entrará em contato para agendar sua consulta com o especialista.</p>
             <ul class="contacto-lista">
-              <li><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg> thiagopalmeira200@gmail.com</li>
+              <li><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg> drbrunonogueira73@gmail.com</li>
               <li><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> (14) 91013-1320</li>
             </ul>
           </div>
 
           <!-- FORMULÁRIO DE CONTATO -->
-          <form class="form" action="https://formsubmit.co/thiagopalmeira200@gmail.com" method="POST">
+          <form class="form" action="https://formsubmit.co/drbrunonogueira73@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="Novo contato do site - Agendamento">
             
@@ -419,6 +422,12 @@ ul{list-style:none}
 
     <!-- PASSO 3: PAGAMENTO PIX REAL -->
     <div id="passo3" class="pix-box">
+      <!-- Mensagem de sucesso automática -->
+      <div class="msg-sucesso" id="msgSucesso">
+        ✅ Formulário salvo e enviado para o WhatsApp!<br>
+        Realize o pagamento do PIX abaixo.
+      </div>
+
       <h3 style="text-align:center;margin-bottom:10px;">Pagamento via PIX</h3>
       <p style="text-align:center;font-size:0.9rem;margin-bottom:20px;">Escaneie o QR Code ou copie o código abaixo.</p>
       
@@ -432,7 +441,7 @@ ul{list-style:none}
       
       <a href="#" target="_blank" class="btn-whats-pix" id="btnEnviarComprovante">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Enviar Comprovante e Dados
+        Enviar Comprovante no WhatsApp
       </a>
     </div>
   </div>
@@ -531,14 +540,13 @@ function voltarPasso1() {
 // ==========================================
 function buscarCEP(cep) {
   cep = cep.replace(/\D/g, '');
-  if (cep.length !== 8) return; // Só busca se tiver 8 dígitos
+  if (cep.length !== 8) return;
 
   const ruaInput = document.getElementById('checkEndereco');
   const bairroInput = document.getElementById('checkBairro');
   const cidadeInput = document.getElementById('checkCidade');
   const numeroInput = document.getElementById('checkNumero');
 
-  // Feedback visual de carregamento
   ruaInput.value = "...";
   bairroInput.value = "...";
   cidadeInput.value = "...";
@@ -550,7 +558,7 @@ function buscarCEP(cep) {
         ruaInput.value = data.logradouro;
         bairroInput.value = data.bairro;
         cidadeInput.value = `${data.localidade} / ${data.uf}`;
-        numeroInput.focus(); // Joga o cursor direto para o número
+        numeroInput.focus();
       } else {
         alert("CEP não encontrado. Por favor, preencha o endereço manualmente.");
         ruaInput.value = "";
@@ -567,7 +575,7 @@ function buscarCEP(cep) {
 }
 
 // ==========================================
-// GERAR PIX E MENSAGEM DO WHATSAPP
+// GERAR PIX E ENVIO AUTOMÁTICO WHATSAPP
 // ==========================================
 function gerarPix() {
   // Validação dos campos
@@ -601,7 +609,7 @@ function gerarPix() {
   // Exibe o Copia e Cola
   document.getElementById('pixCopiaCola').innerText = pixPayload;
   
-  // Configura o botão de WhatsApp
+  // Configura a mensagem do WhatsApp
   const msgWpp = encodeURIComponent(
     `*NOVO PEDIDO - PAGAMENTO PIX*\n\n` +
     `*Produto:* ${produtoAtual.titulo} (${opcao.dose})\n` +
@@ -618,8 +626,18 @@ function gerarPix() {
     `Estou enviando o comprovante do PIX em anexo.`
   );
   
-  document.getElementById('btnEnviarComprovante').href = `https://wa.me/5514910131320?text=${msgWpp}`;
+  const urlWpp = `https://wa.me/5514910131320?text=${msgWpp}`;
   
+  // Atualiza o botão caso ele queira clicar novamente
+  document.getElementById('btnEnviarComprovante').href = urlWpp;
+  
+  // ABRE O WHATSAPP AUTOMATICAMENTE EM UMA NOVA ABA
+  window.open(urlWpp, '_blank');
+  
+  // MOSTRA A MENSAGEM DE SUCESSO
+  document.getElementById('msgSucesso').style.display = 'block';
+  
+  // AVANÇA PARA A TELA DO PIX
   passo2.style.display = 'none';
   passo3.style.display = 'block';
 }
